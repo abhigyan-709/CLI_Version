@@ -79,6 +79,8 @@ def dataFrame():
 def main():
     EquipmentDetails()
     inputDate()
+    inputTime()
+    inputTemp()
 
 if __name__=="__main__":
     main()
