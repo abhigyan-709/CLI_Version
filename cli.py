@@ -68,7 +68,12 @@ def inputTime():
 
 
 def inputTemp():
-    pass
+    global low_temp
+    global high_temp
+    global temp_diff
+    
+    low_temp = input("Enter the lowest temperature recorded: ")
+    high_temp = input("Enter the highest temperature recorded: ")
         
 def logicProcess():
     pass
