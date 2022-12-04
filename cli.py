@@ -81,6 +81,8 @@ def logicProcess():
     
     df = df.assign(Temperature = lst)
 
+def showDataSave():
+    pass
 
 def dataPlot():
     plt.plot(df["Date"], df["Temperature"])
@@ -93,6 +95,7 @@ def main():
     inputTemp()
     logicProcess()
     dataPlot()
+    showDataSave()
 
 if __name__=="__main__":
     main()
