@@ -1,6 +1,8 @@
 import pandas as pd
 import numpy as np 
 from datetime import datetime
+import matplotlib.pyplot as plt
+import random
 
 def EquipmentDetails():
     global equipment_name
@@ -40,24 +42,57 @@ def inputDate():
         except ValueError:
             print("Wrong input format given, please try again!.")
 
+def inputFrequency():
+    global intervals
+    valid_int2 = False
+    while not valid_int2:
+        intervals = input("Enter Time Intervals in minutes at which device is running: ")
+        if intervals.isdigit():
+            valid_int2 = True
+        else:
+            print("Please enter the valid interval.")
+
 def inputTemp():
     global low_temp
     global high_temp
-    global temp_diff
-    
+
     low_temp = input("Enter the lowest temperature recorded: ")
     high_temp = input("Enter the highest temperature recorded: ")
         
 def logicProcess():
-    pass
+    global data
+    global df 
+    global lst 
 
-def dataFrame():
-    pass
+    data = pd.date_range(start = from_date_time, end=to_date_time, freq=str(intervals)+'min')
+
+    df = pd.DataFrame(
+        {
+            "Date": data
+        }
+    )
+    df.index = np.arange(1, len(df) + 1)
+
+    lst = []
+    for i in range(len(df)):
+        ran = random.uniform(float(low_temp), float(high_temp))
+        ran2 = round(ran, 2)
+        lst.append(ran2)
+    
+    df = df.assign(Temperature = lst)
+
+
+def dataPlot():
+    plt.plot(df["Date"], df["Temperature"])
+    plt.show()
 
 def main():
     EquipmentDetails()
     inputDate()
+    inputFrequency()
     inputTemp()
+    logicProcess()
+    dataPlot()
 
 if __name__=="__main__":
     main()
