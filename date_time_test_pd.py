@@ -4,7 +4,7 @@ import random
 import matplotlib.pyplot as plt
 
 t = 15
-data = pd.date_range(start='1/1/2022 10:00:00', end='1/1/2022 17:00:00', freq= str(t)+'min')
+data = pd.date_range(start='1-1-2022 10:00:00', end='1-1-2022 17:00:00', freq= str(t)+'min')
 df = pd.DataFrame(
     {
         "Date" : data
