@@ -56,33 +56,47 @@ def inputTemp():
     global low_temp
     global high_temp
 
-    low_temp = input("Enter the lowest temperature recorded: ")
-    high_temp = input("Enter the highest temperature recorded: ")
+    valid_int3 = False
+    while not valid_int3:
+        try:
+            low_temp = float(input("Enter the lowest temperature recorded: "))
+            high_temp = float(input("Enter the highest temperature recorded: "))
+            valid_int3 = True
+        except:
+            print("Please enter the valid temperature.")
         
 def logicProcess():
     global data
     global df 
     global lst 
 
-    data = pd.date_range(start = from_date_time, end=to_date_time, freq=str(intervals)+'min')
+    for j in range(int(instrument_number)):
 
-    df = pd.DataFrame(
-        {
-            "Date": data
-        }
-    )
-    df.index = np.arange(1, len(df) + 1)
+        data = pd.date_range(start = from_date_time, end=to_date_time, freq=str(intervals)+'min')
 
-    lst = []
-    for i in range(len(df)):
-        ran = random.uniform(float(low_temp), float(high_temp))
-        ran2 = round(ran, 2)
-        lst.append(ran2)
-    
-    df = df.assign(Temperature = lst)
+        df = pd.DataFrame(
+            {
+                "Date": data
+            }
+        )
+        df.index = np.arange(1, len(df) + 1)
+
+        lst = []
+        # for j in range(int(instrument_number)):
+        for i in range(len(df)):
+            ran = random.uniform(float(low_temp), float(high_temp))
+            ran2 = round(ran, 2)
+            lst.append(ran2)
+            
+        df = df.assign(Temperature = lst)
 
 def showDataSave():
-    pass
+    global df2
+    df2 = pd.DataFrame()
+    df2['Date'] = [d.date() for d in df['Date']]
+    df2['Time'] = [d.time() for d in df['Date']]
+    df2 = df2.assign(Temperature = lst)
+    print(df2)
 
 def dataPlot():
     plt.plot(df["Date"], df["Temperature"])
