@@ -70,6 +70,7 @@ def logicProcess():
     global data
     global df 
     global lst 
+    fig, ax = plt.subplots()
 
     for j in range(int(instrument_number)):
 
@@ -91,18 +92,18 @@ def logicProcess():
             
         df = df.assign(Temperature = lst)
 
-        #df.plot(df["Date"], df["Temperature"])
-        #df.plot(xlabel="Date & Time", ylabel="Temperature")
+        
         plt.xlabel('Date & Time')
         plt.ylabel('Temperature')
         plt.style.use('Solarize_Light2')
         plt.title('Dates v/s Temperature Graph of Sensors')
 
-        fig, ax = plt.plot()
+        
         fig.autofmt_xdate()
-        plt.plot(df["Date"], df["Temperature"])
         xfmt = mdates.DateFormatter('%d-%m-%y %H:%M')
+        plt.plot(df["Date"], df["Temperature"])
         ax.xaxis.set_major_formatter(xfmt)
+        
 
 
 def showDataSave():
