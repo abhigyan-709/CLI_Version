@@ -3,6 +3,7 @@ import numpy as np
 from datetime import datetime
 import matplotlib.pyplot as plt
 import random
+from matplotlib import style
 
 def EquipmentDetails():
     global equipment_name
@@ -90,6 +91,14 @@ def logicProcess():
             
         df = df.assign(Temperature = lst)
 
+        #df.plot(df["Date"], df["Temperature"])
+        #df.plot(xlabel="Date & Time", ylabel="Temperature")
+        plt.xlabel('Date & Time')
+        plt.ylabel('Temperature')
+        plt.plot(df["Date", "Time"], df["Temperature"])
+        plt.style.use('Solarize_Light2')
+        plt.title('Dates v/s Temperature Graph of Sensors')
+
 def showDataSave():
     global df2
     df2 = pd.DataFrame()
@@ -99,7 +108,6 @@ def showDataSave():
     print(df2)
 
 def dataPlot():
-    plt.plot(df["Date"], df["Temperature"])
     plt.show()
 
 def main():
