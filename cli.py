@@ -3,7 +3,7 @@ import numpy as np
 from datetime import datetime
 import matplotlib.pyplot as plt
 import random
-from matplotlib import style
+import matplotlib.dates as mdates
 
 def EquipmentDetails():
     global equipment_name
@@ -95,9 +95,15 @@ def logicProcess():
         #df.plot(xlabel="Date & Time", ylabel="Temperature")
         plt.xlabel('Date & Time')
         plt.ylabel('Temperature')
-        plt.plot(df["Date", "Time"], df["Temperature"])
         plt.style.use('Solarize_Light2')
         plt.title('Dates v/s Temperature Graph of Sensors')
+
+        fig, ax = plt.subplots(1)
+        fig.autofmt_xdate()
+        plt.plot(df["Date"], df["Temperature"])
+        xfmt = mdates.DateFormatter('%d-%m-%y %H:%M')
+        ax.xaxis.set_major_formatter(xfmt)
+
 
 def showDataSave():
     global df2
