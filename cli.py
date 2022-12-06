@@ -37,8 +37,6 @@ def inputDate():
             toDate = input("Enter End Date & TIme in Give Format (DD/MM/YYYY HH:MM): ")
             from_date_time = datetime.strptime(fromDate,"%d/%m/%Y %H:%M")
             to_date_time = datetime.strptime(toDate, "%d/%m/%Y %H:%M")
-            # no_days = abs((from_date-to_date).days)
-            # print("Difference between Date: ", no_days) 
             valid_int = True
         except ValueError:
             print("Wrong input format given, please try again!.")
@@ -84,21 +82,16 @@ def logicProcess():
         df.index = np.arange(1, len(df) + 1)
 
         lst = []
-        # for j in range(int(instrument_number)):
         for i in range(len(df)):
             ran = random.uniform(float(low_temp), float(high_temp))
             ran2 = round(ran, 2)
             lst.append(ran2)
             
         df = df.assign(Temperature = lst)
-
-        
         plt.xlabel('Date & Time')
         plt.ylabel('Temperature')
         plt.style.use('Solarize_Light2')
         plt.title('Dates v/s Temperature Graph of Sensors')
-
-        
         fig.autofmt_xdate()
         xfmt = mdates.DateFormatter('%d-%m-%y %H:%M')
         plt.plot(df["Date"], df["Temperature"])
