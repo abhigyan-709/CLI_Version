@@ -98,7 +98,7 @@ def logicProcess():
         plt.style.use('Solarize_Light2')
         plt.title('Dates v/s Temperature Graph of Sensors')
 
-        fig, ax = plt.subplots(1)
+        fig, ax = plt.plot()
         fig.autofmt_xdate()
         plt.plot(df["Date"], df["Temperature"])
         xfmt = mdates.DateFormatter('%d-%m-%y %H:%M')
