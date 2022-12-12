@@ -76,7 +76,8 @@ def logicProcess():
 
         df = pd.DataFrame(
             {
-                "Date": data
+                "Date": data,
+                # "Interval": intervals
             }
         )
         df.index = np.arange(1, len(df) + 1)
